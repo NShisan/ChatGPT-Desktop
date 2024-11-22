@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代理设置</title>
+    <link rel="stylesheet" href="bootstrap-5.3.3/css/bootstrap.min.css">
+    <script src="bootstrap-5.3.3/js/bootstrap.min.js"></script>
+    <style>
+        #setProxyBtn {
+            position: relative;
+            transform: translate(-50%);
+            left: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">HTTPS</span>
+        <input id="httpsInput" placeholder="127.0.0.1:7890" type="text" class="form-control"
+            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">HTTP</span>
+        <input id="httpInput" placeholder="127.0.0.1:7890" type="text" class="form-control"
+            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <div>
+        <button id="setProxyBtn" onclick="setProxy()" type="button" class="btn btn-primary btn-sm">保存</button>
+    </div>
+    <script>
+        var httpsProxy = document.getElementById("httpsInput");
+        var httpProxy = document.getElementById("httpInput");
+        function setProxy() {
+            let proxyRules = "http=" + httpProxy.value + ";https=" + httpsProxy.value;
+            console.log(proxyRules);
+            window.electronAPI.setProxy(proxyRules)
+        }
+    </script>
+</body>
+
+</html>
